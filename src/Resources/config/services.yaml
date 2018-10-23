@@ -4,7 +4,7 @@ services:
         arguments:
             - "@router"
 
-    Adamski\Symfony\HelpersBundle\Helper\BreadcrumbsHelper:
+    Adamski\Symfony\BreadcrumbsBundle\Helper\BreadcrumbsHelper:
         alias: breadcrumbs_bundle.helper.breadcrumbs
 
     breadcrumbs_bundle.twig.extension.breadcrumbs:
