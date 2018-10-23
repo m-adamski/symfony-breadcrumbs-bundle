@@ -31,17 +31,16 @@ To display breadcrumbs in Twig template file use breadcrumbs() function:
 
 To manage the breadcrumbs structure additional functions have been implemented.
 
-| Method                  | Description                                                                                                                                    |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| addItem                 | Add breadcrumb item at the end of default namespace collection                                                                                 |
-| addRouteItem            | Add the breadcrumb element, whose reference is generated based on the given route parameters, at the end of the default set of namespaces      |
-| addNamespaceItem        | Add breadcrumb item at the end of specified namespace collection                                                                               |
-| prependItem             | Add breadcrumb item at the beginning of default namespace collection                                                                           |
-| prependRouteItem        | Add the breadcrumb element, whose reference is generated based on the given route parameters, at the beginning of default namespace collection |
-| prependNamespaceItem    | Add breadcrumb item at the beginning of specified namespace collection                                                                         |
-| clear                   | Clear specified or all namespaces collections                                                                                                  |
-| getNamespaceBreadcrumbs | Return breadcrumbs from specified namespace                                                                                                    |
-
+| Method                  | Description                                                                     |
+| ----------------------- | ------------------------------------------------------------------------------- |
+| addItem                 | Add breadcrumb item at the end of default namespace collection                  |
+| addRouteItem            | Add the route breadcrumb item, at the end of default namespace collection       |
+| addNamespaceItem        | Add breadcrumb item at the end of specified namespace collection                |
+| prependItem             | Add breadcrumb item at the beginning of default namespace collection            |
+| prependRouteItem        | Add the route breadcrumb item, at the beginning of default namespace collection |
+| prependNamespaceItem    | Add breadcrumb item at the beginning of specified namespace collection          |
+| clear                   | Clear specified or all namespaces collections                                   |
+| getNamespaceBreadcrumbs | Return breadcrumbs from specified namespace                                     |
 
 ## License
 
