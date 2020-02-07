@@ -1,6 +1,8 @@
-# Breadcrumbs Bundle for Symfony 4
+# Breadcrumbs Bundle for Symfony
 
 The Breadcrumbs tool simplifies the generation and display process of breadcrumbs.
+
+This bundle is compatible with Symfony 4.1 and Symfony 5.0. Symfony 3.4 compatibility abandoned.
 
 ## Installation
 

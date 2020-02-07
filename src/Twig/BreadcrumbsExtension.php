@@ -4,7 +4,7 @@ namespace Adamski\Symfony\BreadcrumbsBundle\Twig;
 
 use Adamski\Symfony\BreadcrumbsBundle\Helper\BreadcrumbsHelper;
 use Exception;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
