@@ -11,15 +11,8 @@ use Twig\TwigFunction;
 
 class BreadcrumbsExtension extends AbstractExtension {
 
-    /**
-     * @var BreadcrumbsHelper
-     */
-    protected $breadcrumbsHelper;
-
-    /**
-     * @var TranslatorInterface
-     */
-    protected $translator;
+    protected BreadcrumbsHelper   $breadcrumbsHelper;
+    protected TranslatorInterface $translator;
 
     /**
      * BreadcrumbsExtension constructor.
@@ -35,7 +28,7 @@ class BreadcrumbsExtension extends AbstractExtension {
     /**
      * {@inheritdoc}
      */
-    public function getFunctions() {
+    public function getFunctions(): array {
         return [
             new TwigFunction("breadcrumbs", [$this, "renderBreadcrumbs"], ["is_safe" => ["html"], "needs_environment" => true])
         ];
@@ -48,7 +41,7 @@ class BreadcrumbsExtension extends AbstractExtension {
      * @param string      $namespace
      * @return bool|string
      */
-    public function renderBreadcrumbs(Environment $environment, string $namespace = "") {
+    public function renderBreadcrumbs(Environment $environment, string $namespace = ""): bool|string {
 
         $breadcrumbs = empty($namespace) ? $this->breadcrumbsHelper->getNamespaceBreadcrumbs() : $this->breadcrumbsHelper->getNamespaceBreadcrumbs($namespace);
 

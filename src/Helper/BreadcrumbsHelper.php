@@ -10,17 +10,11 @@ class BreadcrumbsHelper {
 
     const DEFAULT_NAMESPACE = "default";
 
-    /**
-     * @var array
-     */
-    protected $breadcrumbs = [
+    protected array $breadcrumbs = [
         self::DEFAULT_NAMESPACE => []
     ];
 
-    /**
-     * @var RouterInterface
-     */
-    protected $router;
+    protected RouterInterface $router;
 
     /**
      * BreadcrumbsHelper constructor.
@@ -41,7 +35,7 @@ class BreadcrumbsHelper {
      * @param bool   $translate
      * @return BreadcrumbsHelper
      */
-    public function addItem(string $text, string $url = "", string $translationDomain = "breadcrumbs", array $translationParameters = [], bool $translate = true) {
+    public function addItem(string $text, string $url = "", string $translationDomain = "breadcrumbs", array $translationParameters = [], bool $translate = true): static {
         return $this->addNamespaceItem(self::DEFAULT_NAMESPACE, $text, $url, $translationDomain, $translationParameters, $translate);
     }
 
@@ -54,9 +48,9 @@ class BreadcrumbsHelper {
      * @param string $translationDomain
      * @param array  $translationParameters
      * @param bool   $translate
-     * @return BreadcrumbsHelper
+     * @return $this
      */
-    public function addRouteItem(string $text, string $route, array $routeParameters = [], string $translationDomain = "breadcrumbs", array $translationParameters = [], bool $translate = true) {
+    public function addRouteItem(string $text, string $route, array $routeParameters = [], string $translationDomain = "breadcrumbs", array $translationParameters = [], bool $translate = true): static {
         return $this->addNamespaceItem(self::DEFAULT_NAMESPACE, $text, $this->router->generate($route, $routeParameters), $translationDomain, $translationParameters, $translate);
     }
 
@@ -71,7 +65,7 @@ class BreadcrumbsHelper {
      * @param bool   $translate
      * @return $this
      */
-    public function addNamespaceItem(string $namespace, string $text, string $url = "", string $translationDomain = "breadcrumbs", array $translationParameters = [], bool $translate = true) {
+    public function addNamespaceItem(string $namespace, string $text, string $url = "", string $translationDomain = "breadcrumbs", array $translationParameters = [], bool $translate = true): static {
         $b = new Breadcrumb($text, $url, $translationDomain, $translationParameters, $translate);
         $this->breadcrumbs[$namespace][] = $b;
 
@@ -86,9 +80,9 @@ class BreadcrumbsHelper {
      * @param string $translationDomain
      * @param array  $translationParameters
      * @param bool   $translate
-     * @return BreadcrumbsHelper
+     * @return $this
      */
-    public function prependItem(string $text, string $url = "", string $translationDomain = "breadcrumbs", array $translationParameters = [], bool $translate = true) {
+    public function prependItem(string $text, string $url = "", string $translationDomain = "breadcrumbs", array $translationParameters = [], bool $translate = true): static {
         return $this->prependNamespaceItem(self::DEFAULT_NAMESPACE, $text, $url, $translationDomain, $translationParameters, $translate);
     }
 
@@ -101,9 +95,9 @@ class BreadcrumbsHelper {
      * @param string $translationDomain
      * @param array  $translationParameters
      * @param bool   $translate
-     * @return BreadcrumbsHelper
+     * @return $this
      */
-    public function prependRouteItem(string $text, string $route, array $routeParameters = [], string $translationDomain = "breadcrumbs", array $translationParameters = [], bool $translate = true) {
+    public function prependRouteItem(string $text, string $route, array $routeParameters = [], string $translationDomain = "breadcrumbs", array $translationParameters = [], bool $translate = true): static {
         return $this->prependNamespaceItem(self::DEFAULT_NAMESPACE, $text, $this->router->generate($route, $routeParameters), $translationDomain, $translationParameters, $translate);
     }
 
@@ -118,7 +112,7 @@ class BreadcrumbsHelper {
      * @param bool   $translate
      * @return $this
      */
-    public function prependNamespaceItem(string $namespace, string $text, string $url = "", string $translationDomain = "breadcrumbs", array $translationParameters = [], bool $translate = true) {
+    public function prependNamespaceItem(string $namespace, string $text, string $url = "", string $translationDomain = "breadcrumbs", array $translationParameters = [], bool $translate = true): static {
         $b = new Breadcrumb($text, $url, $translationDomain, $translationParameters, $translate);
         array_unshift($this->breadcrumbs[$namespace], $b);
 
@@ -131,7 +125,7 @@ class BreadcrumbsHelper {
      * @param string $namespace
      * @return $this
      */
-    public function clear(string $namespace = "") {
+    public function clear(string $namespace = ""): static {
         if (!empty($namespace)) {
             $this->breadcrumbs[$namespace] = [];
         } else {
@@ -149,7 +143,7 @@ class BreadcrumbsHelper {
      * @param string $namespace
      * @return array
      */
-    public function getNamespaceBreadcrumbs(string $namespace = self::DEFAULT_NAMESPACE) {
+    public function getNamespaceBreadcrumbs(string $namespace = self::DEFAULT_NAMESPACE): array {
 
         // Check whether requested namespace breadcrumbs is exists
         if (!array_key_exists($namespace, $this->breadcrumbs)) {
