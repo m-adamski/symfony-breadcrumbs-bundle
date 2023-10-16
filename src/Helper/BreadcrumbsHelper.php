@@ -14,15 +14,10 @@ class BreadcrumbsHelper {
         self::DEFAULT_NAMESPACE => []
     ];
 
-    protected RouterInterface $router;
-
     /**
-     * BreadcrumbsHelper constructor.
-     *
      * @param RouterInterface $router
      */
-    public function __construct(RouterInterface $router) {
-        $this->router = $router;
+    public function __construct(protected readonly RouterInterface $router) {
     }
 
     /**
@@ -145,7 +140,7 @@ class BreadcrumbsHelper {
      */
     public function getNamespaceBreadcrumbs(string $namespace = self::DEFAULT_NAMESPACE): array {
 
-        // Check whether requested namespace breadcrumbs is exists
+        // Check whether requested namespace breadcrumbs is existing
         if (!array_key_exists($namespace, $this->breadcrumbs)) {
             throw new InvalidArgumentException(sprintf(
                 'The breadcrumb namespace "%s" does not exist', $namespace

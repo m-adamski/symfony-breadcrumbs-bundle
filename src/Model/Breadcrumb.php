@@ -4,27 +4,20 @@ namespace Adamski\Symfony\BreadcrumbsBundle\Model;
 
 class Breadcrumb {
 
-    protected string $text;
-    protected string $url;
-    protected string $translationDomain;
-    protected array  $translationParameters;
-    protected bool   $translate;
-
     /**
-     * Breadcrumb constructor.
-     *
      * @param string $text
      * @param string $url
      * @param string $translationDomain
      * @param array  $translationParameters
      * @param bool   $translate
      */
-    public function __construct(string $text, string $url, string $translationDomain, array $translationParameters, bool $translate = true) {
-        $this->text = $text;
-        $this->url = $url;
-        $this->translationDomain = $translationDomain;
-        $this->translationParameters = $translationParameters;
-        $this->translate = $translate;
+    public function __construct(
+        protected readonly string $text,
+        protected readonly string $url,
+        protected readonly string $translationDomain,
+        protected readonly array  $translationParameters,
+        protected readonly bool   $translate
+    ) {
     }
 
     /**

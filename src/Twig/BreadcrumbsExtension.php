@@ -11,19 +11,16 @@ use Twig\TwigFunction;
 
 class BreadcrumbsExtension extends AbstractExtension {
 
-    protected BreadcrumbsHelper   $breadcrumbsHelper;
-    protected TranslatorInterface $translator;
-
     /**
-     * BreadcrumbsExtension constructor.
-     *
      * @param BreadcrumbsHelper   $breadcrumbsHelper
      * @param TranslatorInterface $translator
      */
-    public function __construct(BreadcrumbsHelper $breadcrumbsHelper, TranslatorInterface $translator) {
-        $this->breadcrumbsHelper = $breadcrumbsHelper;
-        $this->translator = $translator;
+    public function __construct(
+        protected readonly BreadcrumbsHelper   $breadcrumbsHelper,
+        protected readonly TranslatorInterface $translator
+    ) {
     }
+
 
     /**
      * {@inheritdoc}
