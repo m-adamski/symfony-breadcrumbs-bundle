@@ -1,8 +1,6 @@
 services:
     breadcrumbs_bundle.helper.breadcrumbs:
         class: Adamski\Symfony\BreadcrumbsBundle\Helper\BreadcrumbsHelper
-        arguments:
-            - "@router"
 
     Adamski\Symfony\BreadcrumbsBundle\Helper\BreadcrumbsHelper:
         alias: breadcrumbs_bundle.helper.breadcrumbs
@@ -11,6 +9,5 @@ services:
         class: Adamski\Symfony\BreadcrumbsBundle\Twig\BreadcrumbsExtension
         arguments:
             - "@breadcrumbs_bundle.helper.breadcrumbs"
-            - "@translator"
         tags:
             - { name: twig.extension }

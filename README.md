@@ -1,10 +1,16 @@
 # Breadcrumbs Bundle for Symfony
 
-The Breadcrumbs tool simplifies the generation and display process of breadcrumbs.
+The Symfony Bundle, which simplifies the process of generating and displaying breadcrumbs.
+Compared to previous versions, this one is based on simple methods of creating and adding breadcrumbs.
+
+Package ``symfony/translation`` is no longer required. If you would like to translate breadcrumbs, do it in the
+template.
+
+Version 5.0 doesn't have compatibility with previous versions.
 
 ## Installation
 
-This bundle can be installed by Composer:
+Composer can install this bundle:
 
 ```
 $ composer require m-adamski/symfony-breadcrumbs-bundle
@@ -12,35 +18,22 @@ $ composer require m-adamski/symfony-breadcrumbs-bundle
 
 ## How to use it?
 
-In the controller action, generate the breadcrumbs structure:
+```php
+use Adamski\Symfony\BreadcrumbsBundle\Helper\BreadcrumbsHelper;
+use Adamski\Symfony\BreadcrumbsBundle\Model\Breadcrumb;
 
-```(php)
-$this->breadcrumbsHelper->addRouteItem("Management", "administrator.index", [], "navigation");
-$this->breadcrumbsHelper->addRouteItem("Data management", "administrator.data", ["id" => $id], "navigation");
+$this->breadcrumbHelper
+    ->add((new Breadcrumb("Dashboard"))->setRoute("dashboard"))
+    ->add((new Breadcrumb("Users"))->setRoute("user"));
 ```
 
-To display breadcrumbs in Twig template file use breadcrumbs() function:
+The custom Twig function is responsible for displaying breadcrumbs:
 
 ```(html)
 <section class="breadcrumbs-container">
     {{ breadcrumbs() }}
 </section>
 ```
-
-## Creating a breadcrumbs structure
-
-To manage the breadcrumbs structure additional functions have been implemented.
-
-| Method                  | Description                                                                     |
-| ----------------------- | ------------------------------------------------------------------------------- |
-| addItem                 | Add breadcrumb item at the end of default namespace collection                  |
-| addRouteItem            | Add the route breadcrumb item, at the end of default namespace collection       |
-| addNamespaceItem        | Add breadcrumb item at the end of specified namespace collection                |
-| prependItem             | Add breadcrumb item at the beginning of default namespace collection            |
-| prependRouteItem        | Add the route breadcrumb item, at the beginning of default namespace collection |
-| prependNamespaceItem    | Add breadcrumb item at the beginning of specified namespace collection          |
-| clear                   | Clear specified or all namespaces collections                                   |
-| getNamespaceBreadcrumbs | Return breadcrumbs from specified namespace                                     |
 
 ## License
 

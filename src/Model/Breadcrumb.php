@@ -3,55 +3,68 @@
 namespace Adamski\Symfony\BreadcrumbsBundle\Model;
 
 class Breadcrumb {
+    private ?string $href = null;
+    private ?string $target = null;
+    private ?string $rel = null;
+    private ?string $route = null;
+    private array $routeParams = [];
 
-    /**
-     * @param string $text
-     * @param string $url
-     * @param string $translationDomain
-     * @param array  $translationParameters
-     * @param bool   $translate
-     */
     public function __construct(
-        protected readonly string $text,
-        protected readonly string $url,
-        protected readonly string $translationDomain,
-        protected readonly array  $translationParameters,
-        protected readonly bool   $translate
+        private string $name
     ) {
     }
 
-    /**
-     * @return string
-     */
-    public function getText(): string {
-        return $this->text;
+    public function getName(): string {
+        return $this->name;
     }
 
-    /**
-     * @return string
-     */
-    public function getUrl(): string {
-        return $this->url;
+    public function setName(string $name): Breadcrumb {
+        $this->name = $name;
+        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getTranslationDomain(): string {
-        return $this->translationDomain;
+    public function getHref(): ?string {
+        return $this->href;
     }
 
-    /**
-     * @return array
-     */
-    public function getTranslationParameters(): array {
-        return $this->translationParameters;
+    public function setHref(?string $href): Breadcrumb {
+        $this->href = $href;
+        return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function isTranslate(): bool {
-        return $this->translate;
+    public function getTarget(): ?string {
+        return $this->target;
+    }
+
+    public function setTarget(?string $target): Breadcrumb {
+        $this->target = $target;
+        return $this;
+    }
+
+    public function getRel(): ?string {
+        return $this->rel;
+    }
+
+    public function setRel(?string $rel): Breadcrumb {
+        $this->rel = $rel;
+        return $this;
+    }
+
+    public function getRoute(): ?string {
+        return $this->route;
+    }
+
+    public function setRoute(?string $route): Breadcrumb {
+        $this->route = $route;
+        return $this;
+    }
+
+    public function getRouteParams(): array {
+        return $this->routeParams;
+    }
+
+    public function setRouteParams(array $routeParams): Breadcrumb {
+        $this->routeParams = $routeParams;
+        return $this;
     }
 }

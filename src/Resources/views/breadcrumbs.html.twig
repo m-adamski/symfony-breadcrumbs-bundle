@@ -1,32 +1,22 @@
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
+<ol>
 
-        {% if breadcrumbs|length > 0 %}
+    {% if breadcrumbs|length > 0 %}
+        {% set last_index = breadcrumbs|length - 1 %}
+        {% set last_breadcrumb = breadcrumbs|last %}
 
-            {% set lastIndex = breadcrumbs|length - 1 %}
-            {% set lastItem = breadcrumbs|last %}
-
-            {% for item in breadcrumbs|slice(0, lastIndex) %}
-                <li class="breadcrumb-item">
-                    <a href="{{ item.url }}">
-                        {% if item.translate %}
-                            {{ item.text|trans(item.translationParameters, item.translationDomain) }}
-                        {% else %}
-                            {{ item.text }}
-                        {% endif %}
-                    </a>
-                </li>
-            {% endfor %}
-
-            <li class="breadcrumb-item active" aria-current="page">
-                {% if lastItem.translate %}
-                    {{ lastItem.text|trans(lastItem.translationParameters, lastItem.translationDomain) }}
-                {% else %}
-                    {{ lastItem.text }}
-                {% endif %}
+        {% for breadcrumb in breadcrumbs|slice(0, last_index) %}
+            <li>
+                <a href="{% if breadcrumb.href is not null %}{{ breadcrumb.href }}{% else %}{{ path(breadcrumb.route, breadcrumb.routeParams) }}{% endif %}"
+                    {% if breadcrumb.rel is not null %} rel="{{ breadcrumb.rel }}"{% endif %}
+                    {% if breadcrumb.target is not null %} target="{{ breadcrumb.target }}"{% endif %}>
+                    {{ breadcrumb.name }}
+                </a>
             </li>
+        {% endfor %}
 
-        {% endif %}
+        <li aria-current="page">
+            {{ last_breadcrumb.name }}
+        </li>
+    {% endif %}
 
-    </ol>
-</nav>
+</ol>
