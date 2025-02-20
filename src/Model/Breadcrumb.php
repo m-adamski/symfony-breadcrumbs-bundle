@@ -8,20 +8,11 @@ class Breadcrumb {
     private ?string $rel = null;
     private ?string $route = null;
     private array $routeParams = [];
+    private array $additionalParams = [];
 
     public function __construct(
         private string $name
-    ) {
-    }
-
-    public function getName(): string {
-        return $this->name;
-    }
-
-    public function setName(string $name): Breadcrumb {
-        $this->name = $name;
-        return $this;
-    }
+    ) {}
 
     public function getHref(): ?string {
         return $this->href;
@@ -65,6 +56,24 @@ class Breadcrumb {
 
     public function setRouteParams(array $routeParams): Breadcrumb {
         $this->routeParams = $routeParams;
+        return $this;
+    }
+
+    public function getAdditionalParams(): array {
+        return $this->additionalParams;
+    }
+
+    public function setAdditionalParams(array $additionalParams): Breadcrumb {
+        $this->additionalParams = $additionalParams;
+        return $this;
+    }
+
+    public function getName(): string {
+        return $this->name;
+    }
+
+    public function setName(string $name): Breadcrumb {
+        $this->name = $name;
         return $this;
     }
 }

@@ -2,16 +2,15 @@
 
 namespace Adamski\Symfony\BreadcrumbsBundle\Twig;
 
-use Adamski\Symfony\BreadcrumbsBundle\Helper\BreadcrumbsHelper;
+use Adamski\Symfony\BreadcrumbsBundle\Model\Catalog as BreadcrumbsCatalog;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class BreadcrumbsExtension extends AbstractExtension {
     public function __construct(
-        private readonly BreadcrumbsHelper $breadcrumbsHelper
-    ) {
-    }
+        private readonly BreadcrumbsCatalog $breadcrumbsCatalog,
+    ) {}
 
     public function getFunctions(): array {
         return [
@@ -19,9 +18,9 @@ class BreadcrumbsExtension extends AbstractExtension {
         ];
     }
 
-    public function renderBreadcrumbs(Environment $environment, string $namespace = BreadcrumbsHelper::DEFAULT_NAMESPACE): string {
+    public function renderBreadcrumbs(Environment $environment, ?string $name = null): string {
         return $environment->render("@Breadcrumbs/breadcrumbs.html.twig", [
-            "breadcrumbs" => $this->breadcrumbsHelper->get($namespace),
+            "breadcrumbs" => $this->breadcrumbsCatalog->getContainer($name ?? "default")->getBreadcrumbs(),
         ]);
     }
 }
